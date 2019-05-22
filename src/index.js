@@ -28,6 +28,7 @@ class Search extends React.Component {
         this.newSearch(value);
     };
     
+    //search through the iTunes API, grab all hits, then convert to JSON
     newSearch = query => {
         const url = `https://itunes.apple.com/search?entity=album&term=${query}`;
         const token = {};
@@ -42,10 +43,12 @@ class Search extends React.Component {
             });
     };
 
+    //initial search through api
     componentDidMount() {
-        this.newSearch('');
+        this.newSearch('Marshmello');
     }
 
+    //output data in html format
     render () {
         return (
             <div className='Search bar with auto refresh'>
