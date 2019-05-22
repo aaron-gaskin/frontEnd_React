@@ -5,34 +5,34 @@ let query = 'bastille';
 
 class App extends React.Component {
 
-
+  //Constructor - App
   constructor(props) {
     super(props);
     this.state = {
       isLoaded: false,
-      hits: [],
+      hits: props,
     };
   }
 
+  // //componentDidMount - App
+  // componentDidMount() {   //runs after render method then updates it
+  //   fetch(api + query)
+  //     .then(res => res.json())  //change response from api to json
+  //     .then(data => this.setState({ isLoaded: true, hits: data.results}));
+  // }
 
-  componentDidMount() {   //runs after render method then updates it
-    fetch(api + query)
-      .then(res => res.json())  //change response from api to json
-      .then(data => this.setState({ isLoaded: true, hits: data.results}));
-  }
-
-
+  //render - App
   render() {    //responsible for producing output
 
-    const {isLoaded, hits} = this.state;
+    const {isLoaded, hits} = this.state;  //loads data
 
-    if(!isLoaded) {
+    if(!isLoaded) {   //check if data was loaded
       return <div>Loading...</div>
     } 
     
-    else {
+    else {    //if data was loaded then
 
-      return(
+      return(     //return the desired info
         <div className = 'App'>
           <ul>
             {hits.map(hit => 
