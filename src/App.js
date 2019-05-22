@@ -1,7 +1,7 @@
 import React from 'react';
 
 const api = 'https://itunes.apple.com/search?entity=album&term=';
-const query = 'marshmello';
+let query = 'bastille';
 
 class App extends React.Component {
 
@@ -37,7 +37,8 @@ class App extends React.Component {
           <ul>
             {hits.map(hit => 
               <li key={hit.trackID}>
-                <a href={hit.url}>{hit.collectionName}</a>
+                Artist: {hit.artistName} | Album: <a href={hit.collectionViewUrl} target='_blank' rel='noopener noreferrer'>{hit.collectionName}</a> | Year: {hit.releaseDate.substring(0,4)}
+                <img src={hit.artworkUrl100} alt={hit.collectionName}/>
               </li>
             )}
           </ul>
