@@ -43,7 +43,7 @@ class Search extends React.Component {
             });
     };
 
-    //initial search through api
+    //initial search through API
     componentDidMount() {
         this.newSearch('Marshmello');
     }
@@ -52,22 +52,23 @@ class Search extends React.Component {
     render () {
         return (
             <div className='Search bar with auto refresh'>
-                <form>
-                    <input
-                        type='text'
-                        className='search bar'
-                        placeholder='Search...'
-                        onChange={this.onChange}
-                    />
-                    {this.state.hits.map(hit => (
-                        <ul key={hit.trackID}>
-                            <li>
-                                Artist: {hit.artistName} | Album: <a href={hit.collectionViewUrl} target='_blank' rel='noopener noreferrer'>{hit.collectionName}</a> | Year: {hit.releaseDate.substring(0,4)}
-                                <img src={hit.artworkUrl100} alt={hit.collectionName}/>
-                            </li>
-                        </ul>
-                    ))}
-                </form>
+                {/* Search bar code */}
+                <input
+                    type='text'
+                    className='Search bar'
+                    placeholder='Search...'
+                    onChange={this.onChange}
+                    ng-model='query'
+                />
+                {/* Take the search results and display them */}
+                {this.state.hits.map(hit => (
+                    <ul key={hit.trackID}>
+                        <li>
+                            Artist: {hit.artistName} | Album: <a href={hit.collectionViewUrl} target='_blank' rel='noopener noreferrer'>{hit.collectionName}</a> | Year: {hit.releaseDate.substring(0,4)}
+                            <img src={hit.artworkUrl100} alt={hit.collectionName}/>
+                        </li>
+                    </ul>
+                ))}
                 {/* <div className='App Component'>
                     <App value={this.state.hits}/>
                 </div> */}
