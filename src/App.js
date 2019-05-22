@@ -1,26 +1,51 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const api = 'https://itunes.apple.com/search?entity=album&term=';
+const query = 'marshmello';
+
+class App extends React.Component {
+
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoaded: false,
+      hits: [],
+    };
+  }
+
+
+  componentDidMount() {   //runs after render method then updates it
+    fetch(api + query)
+      .then(res => res.json())  //change response from api to json
+      .then(data => this.setState({ isLoaded: true, hits: data.results}));
+  }
+
+
+  render() {    //responsible for producing output
+
+    const {isLoaded, hits} = this.state;
+
+    if(!isLoaded) {
+      return <div>Loading...</div>
+    } 
+    
+    else {
+
+      return(
+        <div className = 'App'>
+          <ul>
+            {hits.map(hit => 
+              <li key={hit.trackID}>
+                <a href={hit.url}>{hit.collectionName}</a>
+              </li>
+            )}
+          </ul>
+        </div>
+      );
+
+    }
+  }
 }
 
 export default App;
