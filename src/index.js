@@ -51,11 +51,11 @@ class Search extends React.Component {
     //output data in html format
     render () {
         return (
-            <div className='Search bar'>
+            <div className='App'>
                 {/* Search bar code */}
                 <input
                     type='text'
-                    className='Search bar'
+                    className='search_bar'
                     placeholder='Search...'
                     onChange={this.onChange}
                     ng-model='query'
@@ -65,7 +65,7 @@ class Search extends React.Component {
                     {this.state.hits.map(hit => (
                         <div key={hit.trackID}>  {/* Change to div, assign classnames for CSS styling */}
                             <a className='data' href={hit.collectionViewUrl} target='_blank' rel='noopener noreferrer'>
-                                <img src={hit.artworkUrl100.replace('100x100','300x300')} alt={hit.collectionName}/>
+                                <img src={hit.artworkUrl100.replace('100x100','200x200')} alt={hit.collectionName}/>
                                 <div className='data_text'>
                                     <span className='artist_name'>{hit.artistName}</span>
                                     <span className='album_name'>{hit.collectionName}</span>
