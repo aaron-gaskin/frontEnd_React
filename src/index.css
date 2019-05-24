@@ -11,3 +11,69 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* Results start from left to right then wrap to the next line */
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.data {
+  display: block;
+  text-decoration: none;
+  flex: 0 1 25%;
+  text-align: center;
+  font-size: 0.8em;
+  position: relative;
+  color: white;
+  overflow: hidden;
+  transition: opacity 300ms cubic-bezier(0.67, 0.02, 0.48, 0.97) 50ms;
+}
+
+.data:before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent 50%, #000);
+  opacity: 0;
+  transition: opacity 300ms cubic-bezier(0.67, 0.02, 0.48, 0.97) 50ms;
+}
+
+.data img { 
+  max-width: 100%;
+  min-width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+
+.data_text{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 0.5em;
+  transform: translateY(100%);
+}
+
+
+
+.data:hover {
+  transform: scale(1.2);
+  z-index: 5;
+}
+
+.data:hover .data_text { transform: translateY(0); }
+
+.data:hover:before { opacity: 1; }
+
+.artist_name, .album_name, .year {
+  display: block;
+}

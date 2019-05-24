@@ -51,7 +51,7 @@ class Search extends React.Component {
     //output data in html format
     render () {
         return (
-            <div className='Search bar with auto refresh'>
+            <div className='Search bar'>
                 {/* Search bar code */}
                 <input
                     type='text'
@@ -61,14 +61,20 @@ class Search extends React.Component {
                     ng-model='query'
                 />
                 {/* Take the search results and display them */}
-                {this.state.hits.map(hit => (
-                    <ul key={hit.trackID}>
-                        <li>
-                            Artist: {hit.artistName} | Album: <a href={hit.collectionViewUrl} target='_blank' rel='noopener noreferrer'>{hit.collectionName}</a> | Year: {hit.releaseDate.substring(0,4)}
-                            <img src={hit.artworkUrl100} alt={hit.collectionName}/>
-                        </li>
-                    </ul>
-                ))}
+                <div className='results'>
+                    {this.state.hits.map(hit => (
+                        <div key={hit.trackID}>  {/* Change to div, assign classnames for CSS styling */}
+                            <a className='data' href={hit.collectionViewUrl} target='_blank' rel='noopener noreferrer'>
+                                <img src={hit.artworkUrl100.replace('100x100','300x300')} alt={hit.collectionName}/>
+                                <div className='data_text'>
+                                    <span className='artist_name'>{hit.artistName}</span>
+                                    <span className='album_name'>{hit.collectionName}</span>
+                                    <span className='year'>{hit.releaseDate.substring(0,4)}</span>
+                                </div>
+                            </a>
+                        </div>
+                    ))}
+                </div>
                 {/* <div className='App Component'>
                     <App value={this.state.hits}/>
                 </div> */}
