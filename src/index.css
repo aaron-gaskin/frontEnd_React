@@ -34,7 +34,7 @@ code {
   align-items: center;
 }
 
-/*  */
+/* General format for image and text */
 .data {
   display: block;
   text-align: center;
@@ -59,6 +59,7 @@ code {
   transition: opacity 300ms;
 }
 
+/* Size image */
 .data img { 
   width: 100%;
   height: auto;
@@ -66,6 +67,7 @@ code {
   margin: auto;
 }
 
+/* Text position isn't visible */
 .data_text{
   position: absolute;
   bottom: 0;
@@ -78,12 +80,13 @@ code {
 }
 
 
-
+/* Increase image size when hovered over */
 .data:hover {
   transform: scale(1.1);
   z-index: 5;
 }
 
+/* Move text to original position when hovered over */
 .data:hover .data_text { transform: translateY(0); }
 
 .data:hover:before { opacity: 1; }
